@@ -29,7 +29,7 @@
 /* Palette: soft warm paper + muted Nigerian green + gentle danfo mustard; dark mode is a calm charcoal with the same hues dimmed */
 :root{
   --bg:#F6F2E9; --surface:#FFFDF8; --sunk:#EFE9DC; --ink:#2C2B27; --muted:#6F6A5D;
-  --line:#E2DACA; --edge:#CFC6B2;
+  --line:#E2DACA; --edge:#CFC6B2; --pill:#EFE9DC;
   --accent:#2F7A5B; --accent-ink:#FFFFFF; --accent-deep:#24614A; --accent-soft:#DCEBE2;
   --danfo:#E9C46A; --danfo-soft:#F5E7BF; --band:#EDD08A; --band-ink:#2C2B27; --title:#24614A; --checker:#2C2B27;
   --wrong:#B5573F; --wrong-ink:#FFFFFF; --wrong-soft:#F4DDD5;
@@ -38,13 +38,13 @@
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#191A17; --surface:#22241F; --sunk:#1D1F1B; --ink:#E8E4D8; --muted:#A39E8E;
-  --line:#33362F; --edge:#45493F;
+  --line:#33362F; --edge:#45493F; --pill:#2B2E27;
   --accent:#6DBE96; --accent-ink:#10231A; --accent-deep:#4C9874; --accent-soft:#24362C;
   --danfo:#D2AE55; --danfo-soft:#3A3323; --band:#23251F; --band-ink:#E8E4D8; --title:#D9B75E; --checker:#D2AE55;
   --wrong:#E08B74; --wrong-ink:#2A120C; --wrong-soft:#3D2721; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#191A17; --surface:#22241F; --sunk:#1D1F1B; --ink:#E8E4D8; --muted:#A39E8E;
-  --line:#33362F; --edge:#45493F;
+  --line:#33362F; --edge:#45493F; --pill:#2B2E27;
   --accent:#6DBE96; --accent-ink:#10231A; --accent-deep:#4C9874; --accent-soft:#24362C;
   --danfo:#D2AE55; --danfo-soft:#3A3323; --band:#23251F; --band-ink:#E8E4D8; --title:#D9B75E; --checker:#D2AE55;
   --wrong:#E08B74; --wrong-ink:#2A120C; --wrong-soft:#3D2721; color-scheme:dark}
@@ -62,10 +62,13 @@ h1 span{color:var(--title)}
 .band.compact h1{font-size:clamp(1.2rem,5vw,1.5rem)}
 .band.compact h1 span{display:inline}
 .band.compact .eyebrow{display:none}
+.band.compact .band-inner{padding-block:10px 8px;align-items:center}
+.band.compact .bandctl{margin-top:0}
+.band.compact .iconbtn{width:32px;height:32px}
 .bandctl{display:flex;gap:8px;align-self:flex-start;margin-top:2px}
 .iconbtn{display:grid;place-items:center;width:38px;height:38px;padding:0;background:color-mix(in srgb,var(--surface) 55%,transparent);border:1.5px solid color-mix(in srgb,var(--band-ink) 30%,transparent);color:var(--band-ink);border-radius:50%;cursor:pointer}
 .iconbtn:hover{background:var(--surface)}
-h2{font-family:var(--display);font-weight:400;font-size:22px;margin:0;line-height:1.1}
+h2{font-weight:800;font-size:22px;margin:0;line-height:1.15;letter-spacing:-.01em}
 main{max-width:640px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 56px;display:grid;gap:18px}
 .muted{color:var(--muted)}
 .label{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
@@ -73,7 +76,7 @@ main{max-width:640px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-lef
 .spread{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
 
 /* buttons */
-.btn{font:inherit;font-family:var(--display);font-size:19px;letter-spacing:.02em;background:var(--accent);color:var(--accent-ink);border:none;border-radius:999px;padding:13px 24px;cursor:pointer;box-shadow:0 3px 0 var(--accent-deep);transition:filter .15s;text-align:center}
+.btn{font:inherit;font-weight:800;font-size:18px;letter-spacing:.01em;background:var(--accent);color:var(--accent-ink);border:none;border-radius:999px;padding:13px 24px;cursor:pointer;box-shadow:0 3px 0 var(--accent-deep);transition:filter .15s;text-align:center}
 .btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--accent-deep)}
 .btn:hover:not(:disabled){filter:brightness(1.05)}
 .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--edge);box-shadow:none;font-size:16px;padding:10px 18px}
@@ -86,7 +89,7 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
 .ticket::before,.ticket::after{content:"";position:absolute;top:50%;width:18px;height:18px;border-radius:50%;background:var(--bg);border:1.5px solid var(--edge);transform:translateY(-50%)}
 .ticket::before{left:-11px;clip-path:inset(0 0 0 50%)}
 .ticket::after{right:-11px;clip-path:inset(0 50% 0 0)}
-.ticket h2{font-size:26px}
+.ticket h2{font-family:var(--display);font-weight:400;font-size:26px;letter-spacing:0}
 .grid{font-size:22px;letter-spacing:2px;line-height:1.2;word-break:break-all}
 .flame{display:inline-flex;align-items:center;gap:6px;font-weight:800;background:var(--danfo-soft);border-radius:999px;padding:4px 12px;font-variant-numeric:tabular-nums}
 .countdown{font-variant-numeric:tabular-nums}
@@ -108,7 +111,7 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
 
 /* play */
 .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;font-variant-numeric:tabular-nums}
-.topbar .score{font-family:var(--display);font-size:20px}
+.topbar .score{font-weight:800;font-size:20px}
 .route{display:flex;align-items:center;margin:2px 6px 0 0}
 .stop{flex:1;height:4px;background:var(--line);position:relative}
 .stop::after{content:"";position:absolute;right:-6px;top:-5px;width:14px;height:14px;border-radius:50%;background:var(--surface);border:3px solid var(--line);box-sizing:border-box}
@@ -119,12 +122,12 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
 .timer .bar{height:10px;border-radius:999px;background:var(--line);overflow:hidden}
 .timer .fill{height:100%;width:100%;background:var(--danfo);border-radius:999px;transform-origin:left;transition:transform 1s linear}
 .timer.low .fill{background:var(--wrong)}
-.timer .secs{font-family:var(--display);font-size:18px;font-variant-numeric:tabular-nums;min-width:3ch;text-align:right}
+.timer .secs{font-weight:800;font-size:16px;color:var(--muted);font-variant-numeric:tabular-nums;min-width:3ch;text-align:right}
 .tag{display:inline-block;background:var(--accent-soft);color:var(--accent-deep);font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:3px 10px;border-radius:4px}
 .q{font-size:clamp(1.25rem,5vw,1.65rem);font-weight:800;line-height:1.25;margin:8px 0 0;text-wrap:balance}
 .opts{display:grid;gap:10px}
 .opt{font:inherit;font-size:17px;text-align:left;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:12px;padding:13px 14px;cursor:pointer;display:flex;gap:12px;align-items:center;min-height:56px}
-.opt .k{font-family:var(--display);font-size:14px;width:28px;height:28px;flex:none;display:grid;place-items:center;border-radius:6px;background:var(--danfo-soft);color:var(--ink)}
+.opt .k{font-weight:800;font-size:14px;width:28px;height:28px;flex:none;display:grid;place-items:center;border-radius:6px;background:var(--danfo-soft);color:var(--ink)}
 .opt:hover:not(:disabled){border-color:var(--accent);background:var(--sunk)}
 .opt:disabled{cursor:default}
 .opt.gone{opacity:.25;text-decoration:line-through}
@@ -137,8 +140,9 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
 .chip:disabled{opacity:.35;cursor:default}
 .streak{font-weight:800;font-variant-numeric:tabular-nums;color:var(--muted)}
 .streak.hot{color:var(--wrong)}
-.fact{background:var(--surface);border:1.5px dashed var(--edge);border-radius:12px;padding:14px 16px;display:grid;gap:4px}
-.fact .verdict{font-family:var(--display);font-size:20px;margin:0}
+.fact{background:var(--pill);border:none;border-left:4px solid var(--edge);border-radius:4px 12px 12px 4px;padding:14px 16px;display:grid;gap:4px}
+.fact:has(.verdict.ok){border-left-color:var(--accent)}.fact:has(.verdict.bad){border-left-color:var(--wrong)}
+.fact .verdict{font-weight:800;font-size:19px;margin:0}
 .fact p{margin:0}
 .fact .verdict.ok{color:var(--accent)}.fact .verdict.bad{color:var(--wrong)}
 .after{display:grid;gap:12px}
@@ -159,7 +163,7 @@ button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid
 .review li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:10px;align-items:start;font-size:15px}
 .review .dot{width:14px;height:14px;border-radius:50%;margin-top:5px}
 .review small{display:block;color:var(--muted)}
-details{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:12px 14px}
+details{background:none;border:none;border-top:1.5px solid var(--line);border-radius:0;padding:14px 2px 0}
 summary{cursor:pointer;font-weight:800}
 
 /* leaderboard */
@@ -170,13 +174,13 @@ summary{cursor:pointer;font-weight:800}
 .lb{margin:0;padding:0;list-style:none;border:1.5px solid var(--edge);border-radius:14px;overflow:hidden;background:var(--surface)}
 .lb li{display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:10px;align-items:center;padding:10px 14px;border-top:1px solid var(--line);font-variant-numeric:tabular-nums}
 .lb li:first-child{border-top:none}
-.lb .pos{font-family:var(--display);font-size:16px;color:var(--muted)}
+.lb .pos{font-weight:800;font-size:16px;color:var(--muted)}
 .lb li.top .pos{color:var(--ink)}
 .lb li.top{background:var(--danfo-soft)}
 .lb .who{min-width:0;overflow-wrap:anywhere}
 .lb .who b{font-weight:800}
 .lb .who small{display:block;color:var(--muted);font-size:13px}
-.lb .p{font-family:var(--display);font-size:17px}
+.lb .p{font-weight:800;font-size:17px}
 .lb li.me{outline:2px solid var(--accent);outline-offset:-2px}
 .lb .empty{display:block;padding:14px;color:var(--muted);grid-column:1/-1}
 
@@ -188,6 +192,12 @@ summary{cursor:pointer;font-weight:800}
 .stat small{color:var(--muted);font-size:12.5px}
 .stat .label{font-size:11px}
 .stat .lvbar{display:block;height:6px;margin:5px 0 2px}
+.strip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:10px 0}
+.strip>div{display:grid;gap:3px;align-content:start;padding:0 14px;min-width:0;border-left:1.5px solid var(--line)}
+.strip>div:first-child{border-left:none}
+.strip .label{font-size:11px}
+.strip b{font-size:15px;font-weight:800;line-height:1.3;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.strip .lvbar{display:block;height:5px;margin-top:3px}
 .free{display:grid;gap:12px}
 .mixbtn{font:inherit;display:flex;justify-content:space-between;align-items:center;gap:12px;text-align:left;background:var(--accent-soft);color:var(--ink);border:1.5px solid color-mix(in srgb,var(--accent) 35%,transparent);border-radius:14px;padding:14px 16px;cursor:pointer;transition:border-color .15s,filter .15s}
 .mixbtn b{display:block;font-size:18px;font-weight:800}
@@ -195,8 +205,11 @@ summary{cursor:pointer;font-weight:800}
 .mixbtn .arrow{font-size:22px;color:var(--accent);flex:none}
 .mixbtn:hover{border-color:var(--accent)}
 .pills{display:flex;flex-wrap:wrap;gap:8px}
-.pill{font:inherit;font-size:15px;font-weight:600;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer;transition:border-color .15s,background-color .15s}
-.pill:hover{border-color:var(--accent);background:var(--sunk)}
+.pill{font:inherit;font-size:15px;font-weight:600;background:var(--pill);color:var(--ink);border:1.5px solid transparent;border-radius:999px;padding:8px 14px;cursor:pointer;transition:border-color .15s,background-color .15s}
+.pill:hover{border-color:var(--accent);background:var(--surface)}
+.catgroups{display:grid;gap:14px}
+.catgroup{display:grid;gap:8px}
+.catgroup h3{margin:0;font-size:13px;font-weight:800;color:var(--muted)}
 .howto ul{margin:10px 0 0;padding-left:20px;display:grid;gap:6px;color:var(--muted)}
 .linkbtn{font:inherit;font-weight:800;background:none;border:none;color:var(--accent);cursor:pointer;justify-self:start;padding:4px 0}
 @media (max-width:360px){.stats{grid-template-columns:1fr 1fr}.stats .stat:last-child{grid-column:1/-1}}
@@ -204,6 +217,7 @@ summary{cursor:pointer;font-weight:800}
 .stats.owner .stat b{font-size:22px}
 .hintrow{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
 .hintrow .hint{text-align:left}
+@media (hover:none){.hint.kbd{visibility:hidden}}
 .linkbtn.small{font-size:13px;color:var(--muted);text-decoration:underline}
 #reportNote{font:inherit;font-size:15px;background:var(--surface);color:var(--ink);border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;width:100%;box-sizing:border-box;resize:vertical}
 .pill[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent)}
@@ -5123,6 +5137,12 @@ const CATS=[
  {id:"Women",name:"Women",note:"Trailblazing Nigerian women"},
  {id:"Media",name:"Media",note:"Papers, radio, TV"}
 ];
+const GROUPS=[
+ ["Culture & entertainment",["Food","Music","Nollywood","Comedy","Fashion","Art","Books","Customs","Proverbs","Faith"]],
+ ["People & places",["Places","Sights","Tours","Peoples","Languages","Slang","Royals","Nature","Transport"]],
+ ["History & society",["History","Politics","Women","Money","Media","School"]],
+ ["Everyday Naija",["Sports","Tech","Brands","Childhood","Science"]]
+];
 const catName=id=>id==="All"?"Mix am":id==="Daily"?"Daily":(CATS.find(c=>c.id===id)||{name:id}).name;
 const RANKS=[
  [0,"JJC (Johnny Just Come)","You just land? No shame, enter another round."],
@@ -5339,17 +5359,17 @@ function home(){
        <button class="btn" id="playDaily">Play today's Daily</button>`}
    </section>
 
-   <section class="stats" aria-label="Your progress">
-     <div class="stat"><span class="label">Streak</span><b>${st?`🔥 ${st}`:"0"}</b><small>${st===1?"day":"days"} in a row</small></div>
-     <div class="stat"><span class="label">Level</span><b>${esc(lv.name)}</b><span class="lvbar" aria-hidden="true"><i style="width:${Math.max(lv.pct,4)}%"></i></span><small>${lv.next?`${lv.toGo} to next level`:"Top level"}</small></div>
-     <div class="stat"><span class="label">Best ride</span><b>${fmt(bestFree)}</b><small>points</small></div>
+   <section class="strip" aria-label="Your progress">
+     <div><span class="label">Streak</span><b>${st?`🔥 ${st} ${st===1?"day":"days"}`:"Start today"}</b></div>
+     <div><span class="label">Level</span><b>${esc(lv.name.split(" (")[0])}</b><span class="lvbar" aria-hidden="true" title="${lv.next?`${lv.toGo} to next level`:"Top level"}"><i style="width:${Math.max(lv.pct,4)}%"></i></span></div>
+     <div><span class="label">Best ride</span><b>${bestFree?fmt(bestFree)+" pts":"—"}</b></div>
    </section>
 
    <section id="free" class="free">
      <div class="spread"><h2>Free ride</h2><span class="muted" style="font-size:14px">10 questions, as often as you like</span></div>
      <button class="mixbtn" data-c="All" id="cat-All"><span><b>Mix am</b><small>Questions from all ${CATS.length} categories</small></span><span class="arrow" aria-hidden="true">→</span></button>
      <span class="label">Or pick a category</span>
-     <div class="pills">${CATS.map(c=>`<button class="pill" id="cat-${c.id}" data-c="${c.id}" title="${esc(c.note)}">${esc(c.name)}</button>`).join("")}</div>
+     <div class="catgroups">${GROUPS.map(([g,ids])=>`<div class="catgroup"><h3>${g}</h3><div class="pills">${ids.map(id=>CATS.find(c=>c.id===id)).map(c=>`<button class="pill" id="cat-${c.id}" data-c="${c.id}" title="${esc(c.note)}">${esc(c.name)}</button>`).join("")}</div></div>`).join("")}</div>
    </section>
 
    <details class="howto"><summary>How to play</summary>
@@ -5428,7 +5448,7 @@ function pick(b){
   $("after").innerHTML=`
    <div class="fact pop"><p class="verdict ${ok?"ok":"bad"}">${verdict}</p>${ok?"":`<p><b>Answer:</b> ${esc(x.a)}</p>`}<p>${esc(x.f)}</p></div>
    <button class="btn" id="next">${last?"See my result":"Next stop →"}</button>
-   <div class="hintrow"><p class="hint">Tip: press Enter for next, or 1–4 to answer</p><button class="linkbtn small" id="reportBtn">Report a mistake</button></div>
+   <div class="hintrow"><p class="hint kbd">Tip: press Enter for next, or 1–4 to answer</p><button class="linkbtn small" id="reportBtn">Report a mistake</button></div>
    <div id="reportBox"></div>`;
   $("reportBtn").onclick=()=>openReport(x);
   const n=$("next");n.focus({preventScroll:true});n.scrollIntoView({behavior:"smooth",block:"nearest"});
